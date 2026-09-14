@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- PWA 手機全螢幕 APP 設定 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="四國旅歷">
+    <title>四國 3 日清新漫旅</title>
+    
+    <style>
+        :root {
+            --primary-color: #5b7065;   /* 清新鼠尾草綠 */
+            --accent-color: #c98860;    /* 溫暖夕陽橘 */
+            --bg-color: #f7f9f8;        /* 淡奶油白 */
+            --card-bg: #ffffff;
+            --text-main: #34403a;
+            --text-sub: #6b7c73;
+            --light-green: #eef2f0;
+            --map-btn-bg: #eaf1ed;
+            --map-btn-text: #3c5245;
+        }
+
+        * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; margin: 0; padding: 0; }
+        body { background-color: var(--bg-color); color: var(--text-main); padding-bottom: 40px; line-height: 1.6; }
+
+        /* 標頭 */
+        header {
+            background-color: var(--card-bg);
+            color: var(--primary-color);
+            padding: 16px;
+            text-align: center;
+            font-size: 19px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 10px rgba(0,0,0,0.04);
+            border-bottom: 1px solid var(--light-green);
+        }
+
+        /* 頁籤分頁 */
+        .nav-tabs {
+            display: flex;
+            background: var(--card-bg);
+            position: sticky;
+            top: 53px;
+            z-index: 999;
+            border-bottom: 1px solid #e0e6e3;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 14px 0;
+            text-align: center;
+            background: none;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-sub);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .container { padding: 16px; max-width: 550px; margin: 0 auto; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* 行程卡片 */
+        .card {
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 14px;
+            box-shadow: 0 4px 12px rgba(91, 112, 101, 0.05);
+            border: 1px solid rgba(224, 230, 227, 0.6);
+        }
+
+        .time-tag {
+            display: inline-block;
+            background: var(--light-green);
+            color: var(--primary-color);
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 6px;
+        }
+
+        .card-desc {
+            font-size: 13.5px;
+            color: var(--text-sub);
+            margin-bottom: 10px;
+            white-space: pre-line;
+        }
+
+        /* 標籤小貼紙 */
+        .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+        .tag {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 6px;
+            background: #f0f4f2;
+            color: #55665c;
+        }
+        .tag.accent { background: #fdf0e9; color: var(--accent-color); font-weight: 600; }
+
+        /* 地圖按鈕 */
+        .map-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: var(--map-btn-bg);
+            color: var(--map-btn-text);
+            text-decoration: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12.5px;
+            font-weight: 600;
+            border: 1px solid #d4e0d9;
+            transition: background 0.2s;
+        }
+        .map-btn:active { background: #dce7e1; }
+    </style>
+</head>
+<body>
+
+    <header>🌿 四國 3 日清新漫旅</header>
+
+    <!-- 天數切換頁籤 -->
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab('d1')">Day 1 岡山/高知</button>
+        <button class="tab-btn" onclick="switchTab('d2')">Day 2 城城/道後</button>
+        <button class="tab-btn" onclick="switchTab('d3')">Day 3 岡山城/返台</button>
+    </div>
+
+    <div class="container">
+
+        <!-- ===== Day 1 行程 ===== -->
+        <div id="d1" class="tab-content active">
+            
+            <div class="card">
+                <span class="time-tag">06:00 – 07:40</span>
+                <div class="card-title">關西機場入境與搭車準備</div>
+                <div class="card-desc">辦理入境通關，前往 JR 月台搭車。（若通關快速可彈性改搭 07:27 的 Haruka）</div>
+                <div class="tags"><span class="tag accent">電子票掃碼</span></div>
+            </div>
+
+            <div class="card">
+                <span class="time-tag">07:56 – 09:06</span>
+                <div class="card-title">特急 Haruka 6 號</div>
+                <div class="card-desc">關西機場（3F 1號月台）→ 新大阪站。</div>
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=關西機場站" target="_blank">📍 關西機場站</a>
+            </div>
+
+            <div class="card">
+                <span class="time-tag">09:41 – 10:25</span>
+                <div class="card-title">新幹線 のぞみ 9 號</div>
+                <div class="card-desc">新大阪（21月台）→ 岡山（22月台, 4F）。
+💡 抵達岡山下至 2F 綠色售票機購買「岡山→兒島」特急自由席補票（¥1,270），並採買月台便當與飲料。</div>
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=岡山站" target="_blank">📍 岡山站</a>
+            </div>
+
+            <div class="card">
+                <span class="time-tag">11:05 – 11:46</span>
+                <div class="card-title">特急南風 7 號</div>
+                <div class="card-desc">岡山 → 丸龜（約 41 分鐘）。進站直接使用「岡山→兒島」實體車票過閘門。</div>
+            </div>
+
+            <div class="card">
+                <span class="time-tag">11:46 – 14:40</span>
+                <div class="card-title">丸龜快閃（午餐 & 丸龜城）</div>
+                <div class="card-desc">• 行李寄放：丸龜站內寄物櫃
+• 午餐：車站附近享用正宗讚岐烏龍麵或骨付鳥
+• 景點：漫步至丸龜城，登頂欣賞超高石垣與現存天守</div>
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=丸龜城" target="_blank">📍 丸龜城</a>
+            </div>
+
+            <div class="card">
+                <span class="time-tag">14:54 – 16:15</span>
+                <div class="card-title">特急南風 15 號</div>
+                <div class="card-desc">丸龜 → 高知（約 1 小時 21 分鐘）。</div>
+                <div class="tags"><span class="tag accent">選位：車廂左側 D/E 席（吉野川/大步危溪谷）</span></div>
+            </div>
+
+            <div class="card">
+                <span class="time-tag">16:30 – 17:30</span>
+                <div class="card-title">多美迎高知飯店 Check-in</div>
+                <div class="card-desc">抵達高知站，前往飯店辦理入住、寄放行李與稍作休息。</div>
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Dormy+Inn+Kochi" target="_blank">📍 多美迎高知飯店</a>
+            </div>
+
+            <div class="card">
+                <span class="time-tag">18:00 – 20:00</span>
+                <div class="card-title">高知夜間美食與購物</div>
+                <div class="card-desc">• 弘人市場：品嚐名物「炙燒鰹魚 (鰹のタタキ)」
+• Mont-bell 高知店：飯後散步採買戶外用品（步行約10分）
+• 回飯店泡湯休息</div>
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=弘人市場" target="_blank">📍 弘人市場</a>
+            </div>
+
+        </div>
+
+        <!-- ===== Day 2 行程 ===== -->
+        <div id="d2" class="tab-content">
+            
+            <div class="card">
+                <span class="time-tag">07:30 – 08:20</span>
+                <div class="card-title">早餐：珈琲屋らんぷ (Lamp)</div>
+                <div class="card-desc">飯店斜對面（08:00 營業），體驗 1968 年創業老字號純喫茶的復古燈飾氣氛與炭火咖啡吐司。</div>
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=珈琲屋らんぷ+高知" target="_blank">📍 珈琲屋らんぷ</a>
+            </div>
+
+            <div class="card">
+                <span class="time-tag">08:30 – 10:00</span>
+                <div class="card-title">高知城 🏯</div>
+                <div class="card-desc">參訪現存天守之一的高知城，登頂俯瞰高知市區景致。</div>
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=高知城" target="_blank">📍 高知城</a>
+            </div>
+
+            <div class="card">
+                <span class="time-tag">10:30 – 11:00</span>
+                <div class="card-title">散步前往播磨屋橋</div>
+                <div class="card-desc">從高知城輕鬆漫步至播磨屋橋周邊。</div>
+            </div>
+
+            <div class="card">
+                <span class="time-tag">11:00 – 11:35</span>
+                <div class="card-title">午餐：烏龍麵 熟成麵 宴</div>
+                <div class="card-desc">享用名物炸豬排烏龍麵（カツうどん），餐後可至超商買上車飲料。</div>
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=烏龍麵+熟成麵+宴" target="_blank">📍 烏龍麵 熟成麵 宴</a>
+            </div>
+
+            <div class="card">
+                <span class="time-tag">11:35 – 11:50</span>
+                <div class="card-title">移動至播磨屋橋高速巴士站</div>
+                <div class="card-desc">走出麵店右轉（向南）沿電車通走 1 分鐘，至大十字路口東南角（Denpaku 樓下）「播磨屋橋觀光案內所」門口候車（11:40 抵達冷氣房候車）。</div>
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=播磨屋橋觀光案內所" target="_blank">📍 播磨屋橋觀光案內所</a>
+            </div>
+
+            <div class="card">
+                <span class="time-tag">11:50 – 14:13</span>
+                <div class="card-title">高速巴士 Whale Express</div>
+                <div class="card-desc">播磨屋橋 → 松山大街道（全車指定席，車頭顯示往「松山」，司機協助放行李）。</div>
+            </div>
+
+            <div class="card">
+                <span class="time-tag">14:13 – 14:30</span>
+                <div class="card-title">抵達松山 & 寄放行李</div>
+                <div class="card-desc">大街道站下車，步行 3 分鐘至東橫INN 松山一番町寄放行李。</div>
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=東橫INN+松山一番町" target="_blank">📍 東橫INN 松山一番町</a>
+            </div>
+
+            <div class="card">
+                <span class="time-tag">14:30 – 15:30</span>
+                <div class="card-title">松山城 🏯</div>
+                <div class="card-desc">從大街道步行至纜車站，搭乘纜車/吊椅上山俯瞰市景。</div>
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=松山城纜車站" target="_blank">📍 松山城纜車站</a>
+            </div>
+
+            <div class="card">
+                <span class="time-tag">15:30 – 15:50</span>
+                <div class="card-title">移動前往石手寺</div>
+                <div class="card-desc">山下搭乘伊予鐵公車 [8號線] 直達「石手寺前」下車（約 15 分鐘，可刷 Suica）。</div>
+            </div>
+
+            <div class="card">
+                <span class="time-tag">15:50 – 16:50</span>
+                <div class="card-title">石手寺參訪</div>
+                <div class="card-desc">參訪國寶仁王門、拜殿，體驗「地下胎內洞窟」（洞窟開放至 17:00）。</div>
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=石手寺" target="_blank">📍 石手寺</a>
+            </div>
+
+            <div class="card">
+                <span class="time-tag">16:50 – 17:00</span>
+                <div class="card-title">散步至伊佐爾波神社</div>
+                <div class="card-desc">沿平路步行約 1.2 公里（約 15 分鐘），可順道至湯築城跡蓋章。</div>
+            </div>
+
+            <div class="card">
+                <span class="time-tag">17:00 – 17:45</span>
+                <div class="card-title">伊佐爾波神社（冬季夕陽）🌅</div>
+                <div class="card-desc">登 135 階石階參拜朱紅社殿，於階梯頂端俯瞰 17:00 冬季夕陽與道後溫泉街景。</div>
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=伊佐爾波神社" target="_blank">📍 伊佐爾波神社</a>
+            </div>
+
+            <div class="card">
+                <span class="time-tag">17:45 – 19:00</span>
+                <div class="card-title">道後溫泉商店街 & 精緻輕食</div>
+                <div class="card-desc">• 谷本牛肉店：伊予牛可樂餅
+• DOGO pudding：柑橘布丁（營業至 19:00）
+• 道後BEER BAR：現烤天婦羅/烤串搭啤酒（營業至 22:00）</div>
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=道後溫泉商店街" target="_blank">📍 道後溫泉商店街</a>
+            </div>
+
+            <div class="card">
+                <span class="time-tag">18:00 – 19:30</span>
+                <div class="card-title">道後溫泉本館 泡湯 ♨️</div>
+                <div class="card-desc">體驗百年歷史神之湯入浴，於二樓座位休憩放鬆。</div>
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=道後溫泉本館" target="_blank">📍 道後溫泉本館</a>
+            </div>
+
+            <div class="card">
+                <span class="time-tag">20:00 之後</span>
+                <div class="card-title">返回飯店休息</div>
+                <div class="card-desc">搭路面電車（可刷 Suica）返回大街道，返回東橫INN 松山一番町。</div>
+            </div>
+
+        </div>
+
+        <!-- ===== Day 3 行程 ===== -->
+        <div id="d3" class="tab-content">
+            
+            <div class="card">
+                <span class="time-tag">06:15 – 06:40</span>
+                <div class="card-title">退房與電車移動</div>
+                <div class="card-desc">東橫INN 退房，步行至勝山町站搭路面電車前往 JR 松山站前（06:25–06:40，可刷 Suica）。</div>
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=JR松山站" target="_blank">📍 JR松山站</a>
+            </div>
+
+            <div class="card">
+                <span class="time-tag">06:40 – 07:20</span>
+                <div class="card-title">購票與 7-11 採買</div>
+                <div class="card-desc">松山站自動售票機購買「兒島→岡山」特急自由席票，站內 7-11 買早餐與咖啡。</div>
+            </div>
+
+            <div class="card">
+                <span class="time-tag">07:20 – 10:00</span>
+                <div class="card-title">JR 特急しおかぜ 8 號</div>
+                <div class="card-desc">JR 松山站 → 岡山站（自由席選車廂左側 D/E 席）。抵達岡山站後先寄放行李於寄物櫃。</div>
+            </div>
+
+            <div class="card">
+                <span class="time-tag">10:20 – 11:50</span>
+                <div class="card-title">岡山城巡禮 🏯</div>
+                <div class="card-desc">岡山站前搭岡山電軌（東山線）至「城下」站，步行至岡山城參觀。</div>
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=岡山城" target="_blank">📍 岡山城</a>
+            </div>
+
+            <div class="card">
+                <span class="time-tag">11:56 – 12:20</span>
+                <div class="card-title">返回岡山站</div>
+                <div class="card-desc">「城下」站搭乘路面電車返回岡山站前（12:13–12:20，可刷 Suica）。</div>
+            </div>
+
+            <div class="card">
+                <span class="time-tag">12:20 – 12:50</span>
+                <div class="card-title">車站採買與領行李</div>
+                <div class="card-desc">站內「さんすて岡山」採買午餐、伴手禮並取回行李。</div>
+            </div>
+
+            <div class="card">
+                <span class="time-tag">12:50 – 13:25</span>
+                <div class="card-title">機場接駁巴士</div>
+                <div class="card-desc">岡山站西口搭乘 12:55 機場巴士前往岡山機場（可刷 Suica）。</div>
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=岡山站西口巴士總站" target="_blank">📍 岡山站西口巴士總站</a>
+            </div>
+
+            <div class="card">
+                <span class="time-tag">13:30 – 15:25</span>
+                <div class="card-title">岡山機場 ✈️ 登機返台</div>
+                <div class="card-desc">13:30 抵達辦理虎航登機，搭乘 15:25 航班返回台北。</div>
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=岡山機場" target="_blank">📍 岡山機場</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- 頁籤切換腳本 -->
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+            
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    </script>
+</body>
+</html>
