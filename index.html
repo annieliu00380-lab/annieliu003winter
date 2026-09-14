@@ -20,6 +20,8 @@
             --light-green: #eef2f0;
             --map-btn-bg: #eaf1ed;
             --map-btn-text: #3c5245;
+            --note-bg: #fff8eb;
+            --note-border: #f0c987;
         }
 
         * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; margin: 0; padding: 0; }
@@ -57,7 +59,7 @@
             text-align: center;
             background: none;
             border: none;
-            font-size: 14px;
+            font-size: 13.5px;
             font-weight: 600;
             color: var(--text-sub);
             cursor: pointer;
@@ -110,6 +112,19 @@
             white-space: pre-line;
         }
 
+        /* 提醒黃色方塊 */
+        .note-box {
+            background-color: var(--note-bg);
+            border-left: 4px solid var(--note-border);
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-size: 12.5px;
+            color: #614a19;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
         /* 標籤小貼紙 */
         .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
         .tag {
@@ -120,6 +135,7 @@
             color: #55665c;
         }
         .tag.accent { background: #fdf0e9; color: var(--accent-color); font-weight: 600; }
+        .tag.green { background: var(--light-green); color: var(--primary-color); font-weight: 600; }
 
         /* 地圖按鈕 */
         .map-btn {
@@ -137,6 +153,16 @@
             transition: background 0.2s;
         }
         .map-btn:active { background: #dce7e1; }
+
+        /* 清單清爽樣式 */
+        ul.info-list { list-style: none; padding-left: 0; }
+        ul.info-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #e0e6e3;
+            font-size: 13.5px;
+            color: var(--text-main);
+        }
+        ul.info-list li:last-child { border-bottom: none; }
     </style>
 </head>
 <body>
@@ -148,6 +174,7 @@
         <button class="tab-btn active" onclick="switchTab('d1')">Day 1 岡山/高知</button>
         <button class="tab-btn" onclick="switchTab('d2')">Day 2 城城/道後</button>
         <button class="tab-btn" onclick="switchTab('d3')">Day 3 岡山城/返台</button>
+        <button class="tab-btn" onclick="switchTab('info')">票券劃位</button>
     </div>
 
     <div class="container">
@@ -159,7 +186,7 @@
                 <span class="time-tag">06:00 – 07:40</span>
                 <div class="card-title">關西機場入境與搭車準備</div>
                 <div class="card-desc">辦理入境通關，前往 JR 月台搭車。（若通關快速可彈性改搭 07:27 的 Haruka）</div>
-                <div class="tags"><span class="tag accent">電子票掃碼</span></div>
+                <div class="tags"><span class="tag accent">Haruka 自由席已預訂</span></div>
             </div>
 
             <div class="card">
@@ -172,15 +199,19 @@
             <div class="card">
                 <span class="time-tag">09:41 – 10:25</span>
                 <div class="card-title">新幹線 のぞみ 9 號</div>
-                <div class="card-desc">新大阪（21月台）→ 岡山（22月台, 4F）。
-💡 抵達岡山下至 2F 綠色售票機購買「岡山→兒島」特急自由席補票（¥1,270），並採買月台便當與飲料。</div>
+                <div class="card-desc">新大阪（21月台）→ 岡山（22月台, 4F）。自由席 9 號車。</div>
+                <div class="note-box">
+                    🎫 <b>岡山補票重點：</b><br>
+                    下至 2F 綠色售票機或窗口，購買一張「岡山→兒島」特急自由席單程票（¥1,270）。四國 Pass 僅能涵蓋兒島以南區域。
+                </div>
                 <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=岡山站" target="_blank">📍 岡山站</a>
             </div>
 
             <div class="card">
                 <span class="time-tag">11:05 – 11:46</span>
                 <div class="card-title">特急南風 7 號</div>
-                <div class="card-desc">岡山 → 丸龜（約 41 分鐘）。進站直接使用「岡山→兒島」實體車票過閘門。</div>
+                <div class="card-desc">岡山 → 丸龜（約 41 分鐘）。進站直接使用剛買好的「岡山→兒島」實體車票過閘門。</div>
+                <div class="tags"><span class="tag green">使用四國Pass + 兒島補票</span></div>
             </div>
 
             <div class="card">
@@ -196,7 +227,7 @@
                 <span class="time-tag">14:54 – 16:15</span>
                 <div class="card-title">特急南風 15 號</div>
                 <div class="card-desc">丸龜 → 高知（約 1 小時 21 分鐘）。</div>
-                <div class="tags"><span class="tag accent">選位：車廂左側 D/E 席（吉野川/大步危溪谷）</span></div>
+                <div class="tags"><span class="tag accent">劃位建議：車廂左側 D/E 席（觀賞大步危溪谷）</span></div>
             </div>
 
             <div class="card">
@@ -257,7 +288,11 @@
             <div class="card">
                 <span class="time-tag">11:50 – 14:13</span>
                 <div class="card-title">高速巴士 Whale Express</div>
-                <div class="card-desc">播磨屋橋 → 松山大街道（全車指定席，車頭顯示往「松山」，司機協助放行李）。</div>
+                <div class="card-desc">播磨屋橋 → 松山大街道（全車指定席，司機協助放行李）。</div>
+                <div class="note-box">
+                    🚌 <b>高速巴士搭乘提示：</b><br>
+                    此路線為全車指定席，請務必提前於 Japan Bus Online 或 発車オライネット 預約完成，搭車出示手機 QR Code 即可。
+                </div>
             </div>
 
             <div class="card">
@@ -337,13 +372,18 @@
             <div class="card">
                 <span class="time-tag">06:40 – 07:20</span>
                 <div class="card-title">購票與 7-11 採買</div>
-                <div class="card-desc">松山站自動售票機購買「兒島→岡山」特急自由席票，站內 7-11 買早餐與咖啡。</div>
+                <div class="card-desc">松山站自動售票機購買「兒島→岡山」特急自由席票（¥1,270），站內 7-11 買早餐與咖啡。</div>
+                <div class="note-box">
+                    🎫 <b>回程補票重點：</b><br>
+                    在松山站自動售票機先買好「兒島→岡山」的實體特急自由席票。出岡山站時直接走自動閘門過票即可。
+                </div>
             </div>
 
             <div class="card">
                 <span class="time-tag">07:20 – 10:00</span>
                 <div class="card-title">JR 特急しおかぜ 8 號</div>
                 <div class="card-desc">JR 松山站 → 岡山站（自由席選車廂左側 D/E 席）。抵達岡山站後先寄放行李於寄物櫃。</div>
+                <div class="tags"><span class="tag accent">劃位建議：選車廂左側 D/E 席（看瀨戶內海景）</span></div>
             </div>
 
             <div class="card">
@@ -381,6 +421,41 @@
 
         </div>
 
+        <!-- ===== 票券與劃位備忘資訊 ===== -->
+        <div id="info" class="tab-content">
+            
+            <div class="card">
+                <div class="card-title">🎫 票券購買與使用清單</div>
+                <ul class="info-list">
+                    <li><b>四國鐵路周遊券 (3日電子版)：</b> Klook 預訂 ($2,379)，免兌換，出示手機電子票入場。</li>
+                    <li><b>Haruka 特急 (機場→新大阪)：</b> Klook 預訂自由席，已完成。</li>
+                    <li><b>新幹線 のぞみ (新大阪→岡山)：</b> SmartEX APP 預訂自由席 (¥6,060)，掃 QR Code 進站。</li>
+                    <li><b>Whale Express 高速巴士 (高知→松山)：</b> Japan Bus Online 事先預約全車指定席，出示電子車票上車。</li>
+                    <li><b>市區電車/公車/機場巴士：</b> 松山公車、路面電車、岡山電車與機場巴士皆可直接刷 Suica/西瓜卡。</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-title">💳 必看補票流程 (兒島↔岡山段)</div>
+                <div class="note-box">
+                    <b>原因說明：</b> JR 四國 Pass 的效期範圍最北僅到「兒島站」，不包含岡山至兒島段。
+                </div>
+                <ul class="info-list">
+                    <li><b>去程 (D1 岡山→兒島)：</b> 在岡山站 2F 綠色售票機購買「岡山→兒島」特急自由席單程票（¥1,270）。進站走自動閘門。</li>
+                    <li><b>回程 (D3 兒島→岡山)：</b> 在 JR 松山站售票機先買好「兒島→岡山」特急自由席單程票（¥1,270）。出岡山站走自動閘門過票。</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-title">👺 特急列車劃位與選位秘訣</div>
+                <ul class="info-list">
+                    <li><b>D1 特急南風 15 號 (丸龜→高知)：</b> 建議選擇 <b>車廂左側 (D / E 席)</b>，行經大步危、小步危時可欣賞高知溪谷絕景。</li>
+                    <li><b>D3 特急しおかぜ 8 號 (松山→岡山)：</b> 建議選擇 <b>車廂左側 (D / E 席)</b>，跨越瀨戶大橋時可享受寬廣的瀨戶內海海景。</li>
+                </ul>
+            </div>
+
+        </div>
+
     </div>
 
     <!-- 頁籤切換腳本 -->
@@ -397,3 +472,5 @@
     </script>
 </body>
 </html>
+   
+
