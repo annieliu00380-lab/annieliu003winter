@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>四國三日優化行程 | 關西・高知・松山・岡山</title>
+    <title>四國三日優化行程與記帳 | 關西・高知・松山・岡山</title>
     <style>
         :root {
             --bg-main: #f9f6f0;
@@ -131,6 +131,7 @@
             margin-bottom: 16px;
             display: flex;
             align-items: center;
+            justify-content: space-between;
             gap: 8px;
         }
 
@@ -284,6 +285,82 @@
         ul.item-details li {
             margin-bottom: 4px;
         }
+
+        /* --- 記帳功能新增樣式 --- */
+        .expense-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px;
+            background: var(--bg-main);
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .expense-form input, .expense-form select {
+            padding: 8px 12px;
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .expense-form input:focus, .expense-form select:focus {
+            border-color: var(--accent-warm);
+        }
+
+        .btn-add {
+            background-color: var(--accent-warm);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 8px 16px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-add:hover {
+            background-color: #b85e17;
+        }
+
+        .expense-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 0.92rem;
+        }
+
+        .expense-table th, .expense-table td {
+            border: 1px solid var(--border-light);
+            padding: 10px;
+            text-align: left;
+        }
+
+        .expense-table th {
+            background-color: #f0e6d9;
+            color: var(--primary-dark);
+        }
+
+        .btn-delete {
+            background-color: var(--alert-border);
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .btn-delete:hover {
+            background-color: var(--alert-text);
+        }
+
+        .total-badge {
+            font-size: 1.1rem;
+            color: var(--accent-warm);
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -297,14 +374,36 @@
 
     <!-- 行程天數頁籤選單 -->
     <div class="tab-nav">
-        <button class="tab-btn active" onclick="switchTab('overview')">📌 總覽與注意事項</button>
-        <button class="tab-btn" onclick="switchTab('day1')">Day 1（丸龜・高知）</button>
-        <button class="tab-btn" onclick="switchTab('day2')">Day 2（高知・松山・道後）</button>
-        <button class="tab-btn" onclick="switchTab('day3')">Day 3（松山・岡山城）</button>
+        <button class="tab-btn active" onclick="switchTab('overview', this)">📌 總覽與記帳彙總</button>
+        <button class="tab-btn" onclick="switchTab('day1', this)">Day 1（丸龜・高知）</button>
+        <button class="tab-btn" onclick="switchTab('day2', this)">Day 2（高知・松山・道後）</button>
+        <button class="tab-btn" onclick="switchTab('day3', this)">Day 3（松山・岡山城）</button>
     </div>
 
     <!-- 頁籤內容：總覽與注意事項 -->
     <div id="overview" class="tab-content active">
+        <!-- 全行程花費統計卡片 -->
+        <div class="card">
+            <h2 class="card-title">
+                <span>💰 全行程花費統計彙總</span>
+                <span class="total-badge" id="grand-total">總計：¥ 0</span>
+            </h2>
+            <div class="info-grid">
+                <div class="info-box">
+                    <h4>Day 1 小計</h4>
+                    <p id="overview-day1-total" style="font-size: 1.2rem; font-weight: bold; color: var(--primary-earth);">¥ 0</p>
+                </div>
+                <div class="info-box">
+                    <h4>Day 2 小計</h4>
+                    <p id="overview-day2-total" style="font-size: 1.2rem; font-weight: bold; color: var(--primary-earth);">¥ 0</p>
+                </div>
+                <div class="info-box">
+                    <h4>Day 3 小計</h4>
+                    <p id="overview-day3-total" style="font-size: 1.2rem; font-weight: bold; color: var(--primary-earth);">¥ 0</p>
+                </div>
+            </div>
+        </div>
+
         <div class="card">
             <h2 class="card-title">📌 行程總覽與航班資訊</h2>
             <div class="info-grid">
@@ -347,7 +446,39 @@
             <span>DAY 1：關西機場 ➔ 岡山 ➔ 丸龜城 ➔ 高知</span>
             <span>宿：多美迎高知飯店</span>
         </div>
-        
+
+        <!-- Day 1 記帳卡片 -->
+        <div class="card">
+            <h3 class="card-title">
+                <span>💳 Day 1 記帳與花費明細</span>
+                <span class="total-badge" id="day1-total">當日消費：¥ 0</span>
+            </h3>
+            <div class="expense-form">
+                <input type="text" id="day1-name" placeholder="項目名稱 (例如：烏龍麵)">
+                <input type="number" id="day1-amount" placeholder="金額 (日圓 JPY)">
+                <select id="day1-category">
+                    <option value="餐飲">🍔 餐飲</option>
+                    <option value="交通">🚆 交通</option>
+                    <option value="門票">🎟️ 門票</option>
+                    <option value="購物">🛍️ 購物</option>
+                    <option value="住宿">🏨 住宿</option>
+                    <option value="雜項">💡 雜項</option>
+                </select>
+                <button class="btn-add" onclick="addExpense('day1')">新增消費</button>
+            </div>
+            <table class="expense-table">
+                <thead>
+                    <tr>
+                        <th>類別</th>
+                        <th>項目</th>
+                        <th>金額 (JPY)</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="day1-list"></tbody>
+            </table>
+        </div>
+
         <div class="timeline">
             <div class="timeline-item">
                 <div class="time-badge">06:00 – 07:40</div>
@@ -427,6 +558,38 @@
         <div class="day-header">
             <span>DAY 2：高知城 ➔ 松山城 ➔ 夕陽景點 ➔ 道後溫泉</span>
             <span>宿：東橫INN 松山一番町</span>
+        </div>
+
+        <!-- Day 2 記帳卡片 -->
+        <div class="card">
+            <h3 class="card-title">
+                <span>💳 Day 2 記帳與花費明細</span>
+                <span class="total-badge" id="day2-total">當日消費：¥ 0</span>
+            </h3>
+            <div class="expense-form">
+                <input type="text" id="day2-name" placeholder="項目名稱 (例如：松山城纜車)">
+                <input type="number" id="day2-amount" placeholder="金額 (日圓 JPY)">
+                <select id="day2-category">
+                    <option value="餐飲">🍔 餐飲</option>
+                    <option value="交通">🚆 交通</option>
+                    <option value="門票">🎟️ 門票</option>
+                    <option value="購物">🛍️ 購物</option>
+                    <option value="住宿">🏨 住宿</option>
+                    <option value="雜項">💡 雜項</option>
+                </select>
+                <button class="btn-add" onclick="addExpense('day2')">新增消費</button>
+            </div>
+            <table class="expense-table">
+                <thead>
+                    <tr>
+                        <th>類別</th>
+                        <th>項目</th>
+                        <th>金額 (JPY)</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="day2-list"></tbody>
+            </table>
         </div>
 
         <div class="timeline">
@@ -526,6 +689,38 @@
             <span>歸途</span>
         </div>
 
+        <!-- Day 3 記帳卡片 -->
+        <div class="card">
+            <h3 class="card-title">
+                <span>💳 Day 3 記帳與花費明細</span>
+                <span class="total-badge" id="day3-total">當日消費：¥ 0</span>
+            </h3>
+            <div class="expense-form">
+                <input type="text" id="day3-name" placeholder="項目名稱 (例如：伴手禮)">
+                <input type="number" id="day3-amount" placeholder="金額 (日圓 JPY)">
+                <select id="day3-category">
+                    <option value="餐飲">🍔 餐飲</option>
+                    <option value="交通">🚆 交通</option>
+                    <option value="門票">🎟️ 門票</option>
+                    <option value="購物">🛍️ 購物</option>
+                    <option value="住宿">🏨 住宿</option>
+                    <option value="雜項">💡 雜項</option>
+                </select>
+                <button class="btn-add" onclick="addExpense('day3')">新增消費</button>
+            </div>
+            <table class="expense-table">
+                <thead>
+                    <tr>
+                        <th>類別</th>
+                        <th>項目</th>
+                        <th>金額 (JPY)</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="day3-list"></tbody>
+            </table>
+        </div>
+
         <div class="timeline">
             <div class="timeline-item">
                 <div class="time-badge">06:10 – 06:40</div>
@@ -588,18 +783,102 @@
 </div>
 
 <script>
-    function switchTab(tabId) {
-        // 隱藏所有頁籤內容
+    // 頁籤切換
+    function switchTab(tabId, btn) {
         const contents = document.querySelectorAll('.tab-content');
         contents.forEach(content => content.classList.remove('active'));
 
-        // 取消所有按鈕高亮
         const buttons = document.querySelectorAll('.tab-btn');
         buttons.forEach(button => button.classList.remove('active'));
 
-        // 顯示點選的內容與高亮按鈕
         document.getElementById(tabId).classList.add('active');
-        event.currentTarget.classList.add('active');
+        btn.classList.add('active');
+    }
+
+    // 記帳資料庫 (初始載入 LocalStorage)
+    let expenses = JSON.parse(localStorage.getItem('shikoku_expenses')) || {
+        day1: [],
+        day2: [],
+        day3: []
+    };
+
+    // 初始化頁面資料
+    document.addEventListener("DOMContentLoaded", function() {
+        renderAllExpenses();
+    });
+
+    // 新增記帳
+    function addExpense(day) {
+        const nameInput = document.getElementById(`${day}-name`);
+        const amountInput = document.getElementById(`${day}-amount`);
+        const categoryInput = document.getElementById(`${day}-category`);
+
+        const name = nameInput.value.trim();
+        const amount = parseFloat(amountInput.value);
+        const category = categoryInput.value;
+
+        if (!name || isNaN(amount) || amount <= 0) {
+            alert("請輸入正確的項目名稱與金額！");
+            return;
+        }
+
+        const item = {
+            id: Date.now(),
+            name: name,
+            amount: amount,
+            category: category
+        };
+
+        expenses[day].push(item);
+        saveAndRender();
+
+        // 清空輸入框
+        nameInput.value = '';
+        amountInput.value = '';
+    }
+
+    // 刪除記帳
+    function deleteExpense(day, id) {
+        expenses[day] = expenses[day].filter(item => item.id !== id);
+        saveAndRender();
+    }
+
+    // 儲存至 LocalStorage 並更新畫面
+    function saveAndRender() {
+        localStorage.setItem('shikoku_expenses', JSON.stringify(expenses));
+        renderAllExpenses();
+    }
+
+    // 渲染所有資料
+    function renderAllExpenses() {
+        let grandTotal = 0;
+
+        ['day1', 'day2', 'day3'].forEach(day => {
+            const listEl = document.getElementById(`${day}-list`);
+            const totalEl = document.getElementById(`${day}-total`);
+            const overviewTotalEl = document.getElementById(`overview-${day}-total`);
+            
+            listEl.innerHTML = '';
+            let dayTotal = 0;
+
+            expenses[day].forEach(item => {
+                dayTotal += item.amount;
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${item.category}</td>
+                    <td>${item.name}</td>
+                    <td>¥ ${item.amount.toLocaleString()}</td>
+                    <td><button class="btn-delete" onclick="deleteExpense('${day}', ${item.id})">刪除</button></td>
+                `;
+                listEl.appendChild(tr);
+            });
+
+            totalEl.innerText = `當日消費：¥ ${dayTotal.toLocaleString()}`;
+            overviewTotalEl.innerText = `¥ ${dayTotal.toLocaleString()}`;
+            grandTotal += dayTotal;
+        });
+
+        document.getElementById('grand-total').innerText = `總計：¥ ${grandTotal.toLocaleString()}`;
     }
 </script>
 
