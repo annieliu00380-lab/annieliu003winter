@@ -154,6 +154,51 @@
             margin-bottom: 8px;
         }
 
+        /* 天氣小卡樣式 */
+        .weather-card {
+            background: linear-gradient(135deg, #eef7fc, #e0f2fe);
+            border: 1px solid #bae6fd;
+            border-radius: 10px;
+            padding: 16px;
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .weather-info {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .weather-icon {
+            font-size: 2.2rem;
+        }
+
+        .weather-details h4 {
+            color: #0369a1;
+            font-size: 1.05rem;
+            margin-bottom: 2px;
+        }
+
+        .weather-details p {
+            font-size: 0.9rem;
+            color: #334155;
+        }
+
+        .weather-tip {
+            font-size: 0.85rem;
+            background-color: #ffffff;
+            color: #0284c7;
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid #7dd3fc;
+            font-weight: 500;
+        }
+
         /* 劃位提醒盒 */
         .alert-box {
             background-color: var(--alert-bg);
@@ -447,6 +492,18 @@
             <span>宿：多美迎高知飯店</span>
         </div>
 
+        <!-- Day 1 天氣小卡 -->
+        <div class="weather-card">
+            <div class="weather-info">
+                <div class="weather-icon">🌤️</div>
+                <div class="weather-details">
+                    <h4>香川・高知區域天氣參考</h4>
+                    <p><strong>預估氣溫：</strong> 6°C – 15°C（晴時多雲）</p>
+                </div>
+            </div>
+            <div class="weather-tip">💡 穿著建議：洋蔥式穿法，丸龜城登頂爬坡體感較熱，建議搭易脫外套。</div>
+        </div>
+
         <!-- Day 1 記帳卡片 -->
         <div class="card">
             <h3 class="card-title">
@@ -558,6 +615,18 @@
         <div class="day-header">
             <span>DAY 2：高知城 ➔ 松山城 ➔ 夕陽景點 ➔ 道後溫泉</span>
             <span>宿：東橫INN 松山一番町</span>
+        </div>
+
+        <!-- Day 2 天氣小卡 -->
+        <div class="weather-card">
+            <div class="weather-info">
+                <div class="weather-icon">☀️</div>
+                <div class="weather-details">
+                    <h4>高知・愛媛（松山）天氣參考</h4>
+                    <p><strong>預估氣溫：</strong> 5°C – 14°C（晴朗）｜ <strong>日落時間：</strong> 約 17:00</p>
+                </div>
+            </div>
+            <div class="weather-tip">💡 追夕陽提醒：16:30 前需抵達伊佐爾波神社，山頂風大溫差大請帶保暖圍巾。</div>
         </div>
 
         <!-- Day 2 記帳卡片 -->
@@ -687,6 +756,18 @@
         <div class="day-header">
             <span>DAY 3：松山 ➔ 岡山城 ➔ 岡山機場 ✈️ 返台</span>
             <span>歸途</span>
+        </div>
+
+        <!-- Day 3 天氣小卡 -->
+        <div class="weather-card">
+            <div class="weather-info">
+                <div class="weather-icon">⛅</div>
+                <div class="weather-details">
+                    <h4>松山・岡山區域天氣參考</h4>
+                    <p><strong>預估氣溫：</strong> 7°C – 16°C（多雲時晴）</p>
+                </div>
+            </div>
+            <div class="weather-tip">💡 行程提醒：清晨松山出發氣溫偏低，搭電車與特急請備妥保暖衣物。</div>
         </div>
 
         <!-- Day 3 記帳卡片 -->
