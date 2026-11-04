@@ -316,13 +316,13 @@
 
     <!-- 行程天數頁籤選單 -->
     <div class="tab-nav">
-        <button class="tab-btn active" onclick="switchTab(this, 'overview')">📌 總覽與注意事項</button>
-        <button class="tab-btn" onclick="switchTab(this, 'day1')">Day 1 正案（丸龜・高知）</button>
-        <button class="tab-btn" onclick="switchTab(this, 'day1-backup')">Day 1 備案（晚到高知）</button>
-        <button class="tab-btn" onclick="switchTab(this, 'day2')">Day 2（高知・松山・道後）</button>
-        <button class="tab-btn" onclick="switchTab(this, 'day3')">Day 3（松山・岡山城）</button>
-        <button class="tab-btn" onclick="switchTab(this, 'day3-backup')">Day 3 備案（丸龜城快閃）</button>
-        <button class="tab-btn" onclick="switchTab(this, 'jp-tools')">🗣️ 實用日文與清單</button>
+        <button class="tab-btn active" onclick="switchTab(event, 'overview')">📌 總覽與注意事項</button>
+        <button class="tab-btn" onclick="switchTab(event, 'day1')">Day 1 正案（丸龜・高知）</button>
+        <button class="tab-btn" onclick="switchTab(event, 'day1-backup')">Day 1 備案（晚到高知）</button>
+        <button class="tab-btn" onclick="switchTab(event, 'day2')">Day 2（高知・松山・道後）</button>
+        <button class="tab-btn" onclick="switchTab(event, 'day3')">Day 3（松山・岡山城）</button>
+        <button class="tab-btn" onclick="switchTab(event, 'day3-backup')">Day 3 備案（丸龜城快閃）</button>
+        <button class="tab-btn" onclick="switchTab(event, 'jp-tools')">🗣️ 實用日文與清單</button>
     </div>
 
     <!-- 頁籤內容：總覽與注意事項 -->
@@ -337,7 +337,7 @@
                     <p>備案入境時間：10:00 抵達（班機晚到時啟動備案）</p>
                     <hr style="margin: 8px 0; border: 0; border-top: 1px dashed #ccc;">
                     <p><strong>回程（12/12 週六）：</strong>台灣虎航 離境</p>
-                    <p>起飛時間：<strong>15:25</strong>（<a href="https://maps.google.com/?q=Okayama+Airport" target="_blank" class="map-link">岡山機場 OKJ</a>）[cite: 4]</p>
+                    <p>起飛時間：<strong>15:25</strong>（<a href="https://maps.google.com/?q=Okayama+Airport" target="_blank" class="map-link">岡山機場 OKJ</a>）</p>
                     <p>報到登機時間：13:30 – 15:25</p>
                 </div>
                 <div class="info-box">
@@ -350,17 +350,18 @@
         </div>
 
         <div class="card">
-            <h2 class="card-title">⚠️ JR 購票、劃位與銜接注意事項</h2>
+            <h2 class="card-title">⚠️ 交通購票、劃位與銜接注意事項</h2>
             <div class="alert-box">
                 <h4>🚨 劃位與銜接 key points（請出發前核對時刻）：</h4>
                 <ul>
-                    <li><strong>D1 岡山站補票：</strong>抵達岡山後，下至 2F 綠色售票機補買「岡山 ➔ 兒島」特急自由席券（¥1,270）。</li>
+                    <li><strong>車票圖例說明：</strong>JR四國周遊券（兒島以南可搭）；刷 ICOCA（伊予鐵道可刷，JR 不能刷 IC）；另購（需另外買票）。</li>
+                    <li><strong>D1 岡山站補票：</strong>抵達岡山後，下至 2F 綠色售票機補買「岡山 ➔ 兒島」特急券（¥1,270）。</li>
                     <li><strong>D1 特急南風號（岡山/丸龜➔高知）：</strong>劃位務必選<strong>左側（D/E 席）</strong>，可觀賞大步危與吉野川溪谷景色。</li>
                     <li><strong>D2 高速巴士 Whale Express：</strong>11:50 播磨屋橋出發，請預先確認是否需提前預約劃位。</li>
-                    <li><strong>D3 松山站購票：</strong>06:40 前需在松山站售票機購買車票。</li>
+                    <li><strong>D3 松山站購票：</strong>06:40 前需在松山站購票並買早餐（有周遊券可直接用 QR code 進站）。</li>
                     <li><strong>D3 特急 Shiokaze 8 號：</strong>自由席選<strong>左側（D/E 席）</strong>景色較佳。</li>
                     <li><strong>D3 岡山城正案底線：</strong>11:30 前必須離開岡山城；若 10:30 仍未抵達岡山，則放棄岡山城行程。</li>
-                    <li><strong>D3 丸龜城備案風險：</strong>時間緊湊，務必準時搭上 12:03 南風 10 号回岡山，否則會趕不上機場巴士。</li>
+                    <li><strong>D3 丸龜城備案風險：</strong>時間緊湊，若趕不上 11:03 的車，可改搭 12:03 南風 10 号返回岡山，但 12:55 機場巴士僅剩約 10 分鐘轉乘時間。</li>
                 </ul>
             </div>
         </div>
@@ -383,16 +384,16 @@
             </div>
 
             <div class="timeline-item">
-                <div class="time-badge">07:27 – 08:17</div>
+                <div class="time-badge">07:27 左右</div>
                 <div class="timeline-content">
-                    <strong>特急 Haruka</strong>：關西機場 ➔ <a href="https://maps.google.com/?q=Shin-Osaka+Station" target="_blank" class="map-link">新大阪站</a>（約 50 分鐘；可視情況提早搭更早班次）[cite: 1]
+                    <strong>特急 Haruka</strong>：關西機場 ➔ <a href="https://maps.google.com/?q=Shin-Osaka+Station" target="_blank" class="map-link">新大阪站</a>（約 50 分鐘；可視情況提早搭更早班次，待確認）
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="time-badge">09:41 – 10:25</div>
                 <div class="timeline-content">
-                    <strong>新幹線 Nozomi 9 號</strong>：新大阪 ➔ <a href="https://maps.google.com/?q=Okayama+Station" target="_blank" class="map-link">岡山站</a>（待確認）[cite: 1]
+                    <strong>新幹線 Nozomi 9 號</strong>：新大阪 ➔ <a href="https://maps.google.com/?q=Okayama+Station" target="_blank" class="map-link">岡山站</a>（約 45 分鐘，需另購票，待確認）
                 </div>
             </div>
 
@@ -400,7 +401,7 @@
                 <div class="time-badge">10:25 – 11:00</div>
                 <div class="timeline-content">
                     <div class="highlight-important">
-                        <strong>⚠️ 補票提醒：</strong>至岡山站 2F 綠色售票機補買「岡山 ➔ 兒島」特急券（¥1,270），並採買車上點心[cite: 1]。<strong>（今天第一天不去岡山城，第三天再去！）</strong>
+                        <strong>⚠️ 補票提醒：</strong>至岡山站 2F 綠色售票機補買「岡山 ➔ 兒島」特急券（¥1,270），並採買車上點心。<strong>（今天第一天不去岡山城，第三天再去！）</strong>
                     </div>
                 </div>
             </div>
@@ -408,46 +409,46 @@
             <div class="timeline-item">
                 <div class="time-badge">11:05 – 11:46</div>
                 <div class="timeline-content">
-                    <strong>特急南風 7 號</strong>：岡山 ➔ <a href="https://maps.google.com/?q=Marugame+Station" target="_blank" class="map-link">丸龜站</a>（待確認）[cite: 1]
+                    <strong>特急南風 7 號</strong>：岡山 ➔ <a href="https://maps.google.com/?q=Marugame+Station" target="_blank" class="map-link">丸龜站</a>（兒島以南可使用 JR四國周遊券，待確認）
                 </div>
             </div>
 
             <div class="timeline-item">
-                <div class="time-badge">11:50 – 14:35</div>
+                <div class="time-badge">11:50 – 13:40</div>
                 <div class="timeline-content">
-                    <strong>丸龜快閃（行李寄放 <a href="https://maps.google.com/?q=Marugame+Station" target="_blank" class="map-link">丸龜車站</a> 寄物櫃）</strong>[cite: 1]
+                    <strong>丸龜快閃（行李寄放 <a href="https://maps.google.com/?q=Marugame+Station" target="_blank" class="map-link">丸龜車站</a> 寄物櫃）</strong>
                     <ul class="item-details">
-                        <li><strong>11:50–12:30</strong> 享用讚岐烏龍麵午餐[cite: 1]。</li>
-                        <li><strong>12:35–13:25</strong> 散步至 <a href="https://maps.google.com/?q=Marugame+Castle" target="_blank" class="map-link">丸龜城</a> 登頂參觀（坡陡，注意步行體力與時間）[cite: 1]。</li>
-                        <li><strong>13:40</strong> 返回丸龜站取行李進站[cite: 1]。</li>
+                        <li><strong>11:50–12:30</strong> 享用讚岐烏龍麵午餐。</li>
+                        <li><strong>12:35–13:25</strong> 散步至 <a href="https://maps.google.com/?q=Marugame+Castle" target="_blank" class="map-link">丸龜城</a> 登頂參觀（坡陡，注意步行體力與時間）。</li>
+                        <li><strong>13:40</strong> 返回丸龜站取行李進站。</li>
                     </ul>
                     <div class="highlight-important">
-                        <strong>⚠️ 時間提示：</strong>丸龜時間緊湊，若時間耽誤可彈性改搭 14:54 的南風號[cite: 1]。
+                        <strong>⚠️ 時間提示：</strong>丸龜時間緊湊，若時間耽誤可彈性改搭 14:54 的南風號。
                     </div>
                 </div>
             </div>
 
             <div class="timeline-item">
-                <div class="time-badge">13:54 – 16:15</div>
+                <div class="time-badge">13:54 左右起</div>
                 <div class="timeline-content">
-                    <strong>特急南風號</strong>：丸龜 ➔ <a href="https://maps.google.com/?q=Kochi+Station" target="_blank" class="map-link">高知站</a>（可改搭 14:54 班次）[cite: 1]
+                    <strong>特急南風號</strong>：丸龜 ➔ <a href="https://maps.google.com/?q=Kochi+Station" target="_blank" class="map-link">高知站</a>（車程約 2 小時，若錯過可改搭 14:54 班次）
                     <div class="highlight-important">
-                        <strong>💡 劃位指定：</strong>劃位請選<strong>左側（D/E 席）</strong>，可觀賞大步危與吉野川景色[cite: 1]。
+                        <strong>💡 劃位指定：</strong>劃位請選<strong>左側（D/E 席）</strong>，可觀賞大步危與吉野川景色。
                     </div>
                 </div>
             </div>
 
             <div class="timeline-item">
-                <div class="time-badge">16:30 – 17:30</div>
+                <div class="time-badge">約 15:50 – 17:30</div>
                 <div class="timeline-content">
-                    抵達高知，前往 <a href="https://maps.google.com/?q=Dormy+Inn+Kochi" target="_blank" class="map-link">多美迎高知飯店 (Dormy Inn)</a> Check-in 與休息[cite: 1]。
+                    抵達高知，前往 <a href="https://maps.google.com/?q=Dormy+Inn+Kochi" target="_blank" class="map-link">多美迎高知飯店 (Dormy Inn)</a> Check-in 與休息。
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="time-badge">18:00 – 20:30</div>
                 <div class="timeline-content">
-                    前往 <a href="https://maps.google.com/?q=Hirome+Market" target="_blank" class="map-link">弘人市場</a> 品嚐炙燒鰹魚，飯後逛 <a href="https://maps.google.com/?q=mont-bell+Kochi" target="_blank" class="map-link">Mont-bell 高知店</a>，回飯店泡湯[cite: 1]。
+                    前往 <a href="https://maps.google.com/?q=Hirome+Market" target="_blank" class="map-link">弘人市場</a> 品嚐炙燒鰹魚，飯後逛 <a href="https://maps.google.com/?q=mont-bell+Kochi" target="_blank" class="map-link">Mont-bell 高知店</a>，回飯店泡湯。
                 </div>
             </div>
         </div>
@@ -465,28 +466,28 @@
                 <div class="time-badge">10:00 – 11:00</div>
                 <div class="timeline-content">
                     <strong><a href="https://maps.google.com/?q=Kansai+International+Airport" target="_blank" class="map-link">關西國際機場</a> 通關</strong>
-                    <p>入境、領行李、買 Haruka 車票（可預先完成 Visit Japan Web 填寫以加速通關）[cite: 2]。</p>
+                    <p>入境、領行李、買 Haruka 車票（可預先完成 Visit Japan Web 填寫以加速通關）。</p>
                 </div>
             </div>
 
             <div class="timeline-item">
-                <div class="time-badge">11:10 – 12:00</div>
+                <div class="time-badge">11:10 左右</div>
                 <div class="timeline-content">
-                    <strong>特急 Haruka</strong>：關西機場 ➔ <a href="https://maps.google.com/?q=Shin-Osaka+Station" target="_blank" class="map-link">新大阪站</a>[cite: 2]
+                    <strong>特急 Haruka</strong>：關西機場 ➔ <a href="https://maps.google.com/?q=Shin-Osaka+Station" target="_blank" class="map-link">新大阪站</a>（約 50 分鐘，待確認）
                 </div>
             </div>
 
             <div class="timeline-item">
-                <div class="time-badge">12:20 – 12:50</div>
+                <div class="time-badge">約 12:20</div>
                 <div class="timeline-content">
-                    新大阪站轉乘，採買鐵道便當帶上新幹線享用[cite: 2]。
+                    新大阪站轉乘，採買鐵道便當帶上新幹線享用。
                 </div>
             </div>
 
             <div class="timeline-item">
-                <div class="time-badge">12:50 – 13:35</div>
+                <div class="time-badge">約 12:50 左右</div>
                 <div class="timeline-content">
-                    <strong>新幹線</strong>：新大阪 ➔ <a href="https://maps.google.com/?q=Okayama+Station" target="_blank" class="map-link">岡山站</a>[cite: 2]
+                    <strong>新幹線</strong>：新大阪 ➔ <a href="https://maps.google.com/?q=Okayama+Station" target="_blank" class="map-link">岡山站</a>（約 45 分鐘，需另購票）
                 </div>
             </div>
 
@@ -494,29 +495,29 @@
                 <div class="time-badge">13:35 – 13:50</div>
                 <div class="timeline-content">
                     <div class="highlight-important">
-                        <strong>⚠️ 務必先辦：</strong>岡山站 2F 綠色售票機補買「岡山 ➔ 兒島」特急券（¥1,270）[cite: 2]。
+                        <strong>⚠️ 務必先辦：</strong>岡山站 2F 綠色售票機補買「岡山 ➔ 兒島」特急券（¥1,270），務必先辦。
                     </div>
                 </div>
             </div>
 
             <div class="timeline-item">
-                <div class="time-badge">14:00 – 16:30</div>
+                <div class="time-badge">約 14:00 – 14:30 起</div>
                 <div class="timeline-content">
-                    <strong>特急南風號</strong>：岡山 ➔ <a href="https://maps.google.com/?q=Kochi+Station" target="_blank" class="map-link">高知站</a>（車程約 2.5 小時，劃位靠左側；大步危約 15:30-16:00 經過）[cite: 2]
+                    <strong>特急南風號</strong>：岡山 ➔ <a href="https://maps.google.com/?q=Kochi+Station" target="_blank" class="map-link">高知站</a>（車程約 2.5 小時，兒島以南用周遊券，岡山➔兒島另購；劃位靠左側；大步危約 15:30-16:00 經過）
                 </div>
             </div>
 
             <div class="timeline-item">
-                <div class="time-badge">17:00 抵達</div>
+                <div class="time-badge">約 17:00 抵達</div>
                 <div class="timeline-content">
-                    抵達高知，前往 <a href="https://maps.google.com/?q=Dormy+Inn+Kochi" target="_blank" class="map-link">多美迎高知飯店</a> Check-in[cite: 2]。
+                    抵達高知，前往 <a href="https://maps.google.com/?q=Dormy+Inn+Kochi" target="_blank" class="map-link">多美迎高知飯店</a> Check-in。
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="time-badge">18:00 – 20:30</div>
                 <div class="timeline-content">
-                    弘人市場晚餐、逛 Mont-bell、返回飯店泡湯[cite: 2]。
+                    弘人市場晚餐、逛 Mont-bell、返回飯店泡湯。
                 </div>
             </div>
 
@@ -524,8 +525,8 @@
                 <div class="time-badge">🚨 極端備案</div>
                 <div class="timeline-content">
                     <ul class="item-details">
-                        <li><strong>錯過一班南風號：</strong>改搭下一班，約 17:30–18:00 抵達高知，晚餐壓縮至 1 小時[cite: 2]。</li>
-                        <li><strong>最壞情況（17:30 後才到岡山）：</strong>考慮在岡山住一晚，D2 改搭早班車前往高知[cite: 2]。</li>
+                        <li><strong>錯過一班南風號：</strong>改搭下一班，約 17:30–18:00 抵達高知，晚餐壓縮至 1 小時。</li>
+                        <li><strong>最壞情況（17:30 後才到岡山）：</strong>考慮在岡山住一晚，D2 改搭早班車前往高知（待確認）。</li>
                     </ul>
                 </div>
             </div>
@@ -543,44 +544,44 @@
             <div class="timeline-item">
                 <div class="time-badge">07:45 – 08:45</div>
                 <div class="timeline-content">
-                    早餐：前往高知老字號純喫茶 <a href="https://maps.google.com/?q=Lamp+Kochi" target="_blank" class="map-link">珈琲屋らんぷ (Lamp)</a> 享用朝食（出發前請確認營業時間）[cite: 3]。
+                    早餐：前往高知老字號純喫茶 <a href="https://maps.google.com/?q=Lamp+Kochi" target="_blank" class="map-link">珈琲屋らんぷ (Lamp)</a> 享用朝食（營業時間請確認）。
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="time-badge">09:00 – 10:30</div>
                 <div class="timeline-content">
-                    參訪 <a href="https://maps.google.com/?q=Kochi+Castle" target="_blank" class="map-link">高知城 🏯</a>：完整參觀現存天守[cite: 3]。
+                    參訪 <a href="https://maps.google.com/?q=Kochi+Castle" target="_blank" class="map-link">高知城 🏯</a>：完整參觀現存天守。
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="time-badge">10:30 – 11:30</div>
                 <div class="timeline-content">
-                    散步至 <a href="https://maps.google.com/?q=Harimayabashi" target="_blank" class="map-link">播磨屋橋</a>，午餐：<a href="https://maps.google.com/?q=熟成麺+宴" target="_blank" class="map-link">熟成麵 宴</a>（請預先確認開店時間；備案為車站便當）[cite: 3]。
+                    散步至 <a href="https://maps.google.com/?q=Harimayabashi" target="_blank" class="map-link">播磨屋橋</a>，午餐：<a href="https://maps.google.com/?q=熟成麺+宴" target="_blank" class="map-link">熟成麵 宴</a>（開店時間請確認；備案為車站便當）。
                 </div>
             </div>
 
             <div class="timeline-item">
-                <div class="time-badge">11:50 – 14:30</div>
+                <div class="time-badge">11:50 左右起</div>
                 <div class="timeline-content">
-                    <strong>高速巴士 Whale Express</strong>：播磨屋橋 ➔ <a href="https://maps.google.com/?q=Okaido+Station" target="_blank" class="map-link">大街道</a>（車程約 2.5 小時，請確認是否需預約）[cite: 3]。
+                    <strong>高速巴士 Whale Express</strong>：播磨屋橋 ➔ <a href="https://maps.google.com/?q=Okaido+Station" target="_blank" class="map-link">大街道</a>（車程約 2.5 小時，需另購票，請確認是否需預約）。
                 </div>
             </div>
 
             <div class="timeline-item">
-                <div class="time-badge">14:30 – 14:40</div>
+                <div class="time-badge">約 14:30</div>
                 <div class="timeline-content">
-                    至 <a href="https://maps.google.com/?q=Toyoko+Inn+Matsuyama+Ichibancho" target="_blank" class="map-link">東橫INN 松山一番町</a> 辦理行李寄放[cite: 3]。
+                    至 <a href="https://maps.google.com/?q=Toyoko+Inn+Matsuyama+Ichibancho" target="_blank" class="map-link">東橫INN 松山一番町</a> 辦理行李寄放。
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="time-badge">14:40 – 16:00</div>
                 <div class="timeline-content">
-                    前往 <a href="https://maps.google.com/?q=Matsuyama+Castle" target="_blank" class="map-link">松山城 🏯</a>（搭乘纜車/空中吊椅上山）[cite: 3]。
+                    前往 <a href="https://maps.google.com/?q=Matsuyama+Castle" target="_blank" class="map-link">松山城 🏯</a>（搭乘纜車/空中吊椅上山，待確認）。
                     <div class="highlight-important">
-                        <strong>⚠️ 注意事項：</strong>天守最後入場約 16:00，建議 15:30 開始下山。若巴士晚於 14:40 抵達，松山城只參觀天守[cite: 3]。
+                        <strong>⚠️ 注意事項：</strong>天守最後入場約 16:00，建議 15:30 開始下山。若巴士晚於 14:40 抵達，松山城只參觀天守。
                     </div>
                 </div>
             </div>
@@ -588,16 +589,16 @@
             <div class="timeline-item">
                 <div class="time-badge">16:05 – 16:35</div>
                 <div class="timeline-content">
-                    搭乘路面電車前往道後溫泉區域[cite: 3]。
+                    搭乘路面電車前往道後溫泉區域（可刷 ICOCA）。
                 </div>
             </div>
 
             <div class="timeline-item">
-                <div class="time-badge">16:40 – 17:30</div>
+                <div class="time-badge">16:40 – 17:00</div>
                 <div class="timeline-content">
-                    攀登 <a href="https://maps.google.com/?q=Isaniwa+Shrine" target="_blank" class="map-link">伊佐爾波神社</a> 135 階石階觀賞夕陽[cite: 3]。
+                    攀登 <a href="https://maps.google.com/?q=Isaniwa+Shrine" target="_blank" class="map-link">伊佐爾波神社</a> 135 階石階觀賞夕陽。
                     <div class="highlight-important">
-                        <strong>💡 日落時間：</strong>冬季日落約 17:00，建議由石手寺或大街道直奔神社捕捉夕陽景致[cite: 3]。
+                        <strong>💡 日落時間：</strong>冬季日落約 17:00；若巴士晚於 14:40 到達，松山城只上天守。
                     </div>
                 </div>
             </div>
@@ -605,14 +606,14 @@
             <div class="timeline-item">
                 <div class="time-badge">17:30 – 19:30</div>
                 <div class="timeline-content">
-                    逛 <a href="https://maps.google.com/?q=Dogo+Onsen+Shopping+Street" target="_blank" class="map-link">道後商店街</a>、<a href="https://maps.google.com/?q=Dogo+Onsen+Honkan" target="_blank" class="map-link">道後溫泉本館</a> 泡湯與享用晚餐[cite: 3]。
+                    逛 <a href="https://maps.google.com/?q=Dogo+Onsen+Shopping+Street" target="_blank" class="map-link">道後商店街</a>、<a href="https://maps.google.com/?q=Dogo+Onsen+Honkan" target="_blank" class="map-link">道後溫泉本館</a> 泡湯與享用晚餐。
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="time-badge">20:00 之後</div>
                 <div class="timeline-content">
-                    搭乘路面電車返回大街道，入住飯店休息[cite: 3]。
+                    搭乘路面電車返回大街道（可刷 ICOCA），入住飯店休息。
                 </div>
             </div>
         </div>
@@ -622,44 +623,44 @@
     <div id="day3" class="tab-content">
         <div class="day-header">
             <span>DAY 3（12/12 週六）：松山 ➔ 岡山城 ➔ 岡山機場 ✈️ 返台</span>
-            <span>歸途（15:25 虎航起飛）[cite: 4]</span>
+            <span>歸途（15:25 虎航起飛）</span>
         </div>
 
         <div class="timeline">
             <div class="timeline-item">
                 <div class="time-badge">06:10 – 06:40</div>
                 <div class="timeline-content">
-                    辦理退房，搭乘路面電車前往 <a href="https://maps.google.com/?q=JR+Matsuyama+Station" target="_blank" class="map-link">JR 松山站</a>[cite: 4]。
+                    退房，搭乘路面電車前往 <a href="https://maps.google.com/?q=JR+Matsuyama+Station" target="_blank" class="map-link">JR 松山站</a>（可刷 ICOCA）。
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="time-badge">06:40 – 07:15</div>
                 <div class="timeline-content">
-                    抵達松山站，購買車票並採買早餐。（請依套票類別確認買票方式）[cite: 4]
+                    抵達松山站，買票、買早餐（依套票決定購票方式，有周遊券可用 QR code 進站）。
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="time-badge">07:20 – 10:00</div>
                 <div class="timeline-content">
-                    <strong>特急 Shiokaze 8 號</strong>：JR 松山站 ➔ <a href="https://maps.google.com/?q=Okayama+Station" target="_blank" class="map-link">岡山站</a>（待確認，自由席選左側席）[cite: 4]
+                    <strong>特急しおかぜ 8 號</strong>：JR 松山站 ➔ <a href="https://maps.google.com/?q=Okayama+Station" target="_blank" class="map-link">岡山站</a>（適用 JR四國周遊券，兒島以南適用、兒島➔岡山另購，自由席建議選左側席）
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="time-badge">10:00 – 10:20</div>
                 <div class="timeline-content">
-                    抵達岡山站，將大行李寄放於車站寄物櫃[cite: 4]。
+                    抵達岡山站，將大行李寄放於車站寄物櫃。
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="time-badge">10:20 – 11:30</div>
                 <div class="timeline-content">
-                    參訪 <a href="https://maps.google.com/?q=Okayama+Castle" target="_blank" class="map-link">岡山城 🏯</a>[cite: 4]
+                    參訪 <a href="https://maps.google.com/?q=Okayama+Castle" target="_blank" class="map-link">岡山城 🏯</a>
                     <div class="highlight-important">
-                        <strong>⚠️ 嚴格底線：</strong>11:30 前必須離開岡山城！若 10:30 仍未抵達岡山站，請直接放棄岡山城行程[cite: 4]。
+                        <strong>⚠️ 嚴格底線：</strong>11:30 前必須離開岡山城！若 10:30 仍未抵達岡山，請直接放棄岡山城行程。
                     </div>
                 </div>
             </div>
@@ -667,21 +668,21 @@
             <div class="timeline-item">
                 <div class="time-badge">11:40 – 12:45</div>
                 <div class="timeline-content">
-                    返回岡山站，採買鐵道便當、伴手禮並領取行李[cite: 4]。
+                    返回岡山站，採買便當、伴手禮並領取行李。
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="time-badge">12:55 – 13:25</div>
                 <div class="timeline-content">
-                    於岡山站西口搭乘機場巴士前往 <a href="https://maps.google.com/?q=Okayama+Airport" target="_blank" class="map-link">岡山機場</a>[cite: 4]。
+                    於岡山站搭乘機場巴士前往 <a href="https://maps.google.com/?q=Okayama+Airport" target="_blank" class="map-link">岡山機場</a>（需另購票）。
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="time-badge">13:30 – 15:25</div>
                 <div class="timeline-content">
-                    抵達岡山機場，辦理虎航報到與登機手續，搭乘 <strong>15:25</strong> 航班順利返台 ✈️[cite: 4]。
+                    抵達岡山機場，辦理虎航報到與登機手續（請先查報到截止時間），搭乘 <strong>15:25</strong> 航班順利返台 ✈️。
                 </div>
             </div>
         </div>
@@ -698,74 +699,78 @@
             <div class="timeline-item">
                 <div class="time-badge">06:10 – 06:40</div>
                 <div class="timeline-content">
-                    辦理退房，搭乘路面電車前往 <a href="https://maps.google.com/?q=JR+Matsuyama+Station" target="_blank" class="map-link">JR 松山站</a>[cite: 4]。
+                    退房，搭乘路面電車前往 <a href="https://maps.google.com/?q=JR+Matsuyama+Station" target="_blank" class="map-link">JR 松山站</a>（與主版相同，可刷 ICOCA）。
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="time-badge">06:40 – 07:15</div>
                 <div class="timeline-content">
-                    抵達松山站，購買車票並採買早餐。（請確認套票是否包含 Shiokaze 特急）[cite: 4]
+                    抵達松山站，買票、買早餐（適用 JR四國周遊券，有周遊券可用 QR code 進站）。
                 </div>
             </div>
 
             <div class="timeline-item">
-                <div class="time-badge">07:20 – 09:20</div>
+                <div class="time-badge">07:20 – 約 09:20</div>
                 <div class="timeline-content">
-                    <strong>JR 特急 Shiokaze 8 号</strong>：JR 松山站 ➔ <a href="https://maps.google.com/?q=Marugame+Station" target="_blank" class="map-link">丸龜站</a>（自由席建議選左側 D/E 席）[cite: 4]
+                    <strong>JR 特急しおかぜ 8 号</strong>：松山 ➔ <a href="https://maps.google.com/?q=Marugame+Station" target="_blank" class="map-link">丸龜站</a>（約 09:20 到達，由 07:20 至 10:00 到岡山推估，請核對；自由席建議選左側 D/E 席）
                 </div>
             </div>
 
             <div class="timeline-item">
-                <div class="time-badge">09:20 – 09:50</div>
+                <div class="time-badge">約 09:20 – 09:30</div>
                 <div class="timeline-content">
-                    抵達丸龜站，出站將大行李寄放於車站寄物櫃。
+                    抵達丸龜站，出站將大行李寄放於車站寄物櫃（請備好零錢）。
                 </div>
             </div>
 
             <div class="timeline-item">
-                <div class="time-badge">09:50 – 11:00</div>
+                <div class="time-badge">09:30 – 10:50</div>
                 <div class="timeline-content">
                     <strong>丸龜城 🏯 快閃參觀</strong>
-                    <p>步行至丸龜城，快速登上陡坡參觀天守閣並折返車站（需注意腳步與回程時間）。</p>
+                    <p>步行至丸龜城、登天守（停留約 50 分，往返步行各約 10-12 分；城約 9:00 開放），回車站。</p>
                 </div>
             </div>
 
             <div class="timeline-item">
-                <div class="time-badge">11:00 – 12:03</div>
+                <div class="time-badge">10:50 – 11:03</div>
                 <div class="timeline-content">
-                    返回丸龜站領行李、上廁所、準備進站搭車。
+                    領行李、買點心、進站（午餐改到岡山吃）。
                 </div>
             </div>
 
             <div class="timeline-item">
-                <div class="time-badge">12:03 – 12:40</div>
+                <div class="time-badge">11:03 左右起</div>
                 <div class="timeline-content">
-                    <strong>JR 特急南風 10 号</strong>：丸龜 ➔ <a href="https://maps.google.com/?q=Okayama+Station" target="_blank" class="map-link">岡山站</a>（約 37 分鐘車程返回岡山）
+                    <strong>JR 特急</strong>：丸龜 ➔ <a href="https://maps.google.com/?q=Okayama+Station" target="_blank" class="map-link">岡山站</a>（約 40-45 分；兒島以南可用周遊券，兒島➔岡山另購）。
                 </div>
             </div>
 
             <div class="timeline-item">
-                <div class="time-badge">12:40 – 12:55</div>
+                <div class="time-badge">約 11:45 抵達</div>
                 <div class="timeline-content">
-                    抵達岡山站後迅速移動至西口。
-                    <div class="highlight-important">
-                        <strong>⚠️ 時間極緊：</strong>必須趕上 12:55 發車的機場巴士！
-                    </div>
+                    抵達岡山，午餐、買伴手禮（在さんすて岡山或站前吃，預留約 1 小時）。
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="time-badge">12:55 – 13:25</div>
                 <div class="timeline-content">
-                    搭乘岡山站西口發車的機場巴士前往 <a href="https://maps.google.com/?q=Okayama+Airport" target="_blank" class="map-link">岡山機場</a>[cite: 4]。
+                    搭乘岡山站西口發車的機場巴士前往 <a href="https://maps.google.com/?q=Okayama+Airport" target="_blank" class="map-link">岡山機場</a>（需另購票，班次請確認）。
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="time-badge">13:30 – 15:25</div>
                 <div class="timeline-content">
-                    抵達岡山機場，辦理虎航報到與登機手續，搭乘 <strong>15:25</strong> 航班順利返台 ✈️[cite: 4]。
+                    抵達岡山機場，辦理虎航報到與登機手續（報到截止時間請先查），搭乘 <strong>15:25</strong> 航班順利返台 ✈️。
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-badge">🚨 備案提示</div>
+                <div class="timeline-content">
+                    <p><strong>趕不上 11:03 那班（待確認）：</strong>改搭下一班（約 12:03 發，約 12:45 到岡山），12:55 的巴士只剩約 10 分鐘，請先查下一班巴士。</p>
                 </div>
             </div>
         </div>
@@ -786,39 +791,51 @@
                 <tbody>
                     <tr>
                         <td>請問這班車到○○嗎？</td>
-                        <td>この電車は○○に行きますか？[cite: 5]</td>
+                        <td>この電車は○○に行きますか？</td>
                     </tr>
                     <tr>
                         <td>請問○○站在哪裡？</td>
-                        <td>○○駅はどこですか？[cite: 5]</td>
+                        <td>○○駅はどこですか？</td>
                     </tr>
                     <tr>
                         <td>我要買一張到○○的票</td>
-                        <td>○○までの切符を一枚ください[cite: 5]</td>
+                        <td>○○までの切符を一枚ください</td>
                     </tr>
                     <tr>
                         <td>請問可以寄放行李嗎？</td>
-                        <td>荷物を預かってもらえますか？[cite: 5]</td>
+                        <td>荷物を預かってもらえますか？</td>
                     </tr>
                     <tr>
                         <td>我有訂位，名字是○○</td>
-                        <td>○○で予約しています[cite: 5]</td>
+                        <td>○○で予約しています</td>
                     </tr>
                     <tr>
                         <td>請給我菜單 / 我要這個</td>
-                        <td>メニューをお願いします / これをください[cite: 5]</td>
+                        <td>メニューをお願いします / これをください</td>
                     </tr>
                     <tr>
                         <td>請幫我結帳 / 可以刷卡嗎？</td>
-                        <td>お会計をお願いします / カードは使えますか？[cite: 5]</td>
+                        <td>お会計をお願いします / カードは使えますか？</td>
+                    </tr>
+                    <tr>
+                        <td>有沒有不含○○的料理？</td>
+                        <td>○○なしの料理はありますか？</td>
                     </tr>
                     <tr>
                         <td>我想辦理入住</td>
-                        <td>チェックインをお願いします[cite: 5]</td>
+                        <td>チェックインをお願いします</td>
+                    </tr>
+                    <tr>
+                        <td>請問廁所在哪裡？</td>
+                        <td>トイレはどこですか？</td>
                     </tr>
                     <tr>
                         <td>我迷路了，可以幫我嗎？</td>
-                        <td>道に迷いました。助けてください[cite: 5]</td>
+                        <td>道に迷いました。助けてください</td>
+                    </tr>
+                    <tr>
+                        <td>我不舒服，請叫救護車</td>
+                        <td>具合が悪いです。救急車を呼んでください</td>
                     </tr>
                 </tbody>
             </table>
@@ -826,12 +843,12 @@
             <div class="alert-box" style="margin-top: 20px;">
                 <h4>✅ 出發前關鍵確認清單 (Checklist)</h4>
                 <ul>
-                    <li>Haruka、Nozomi、南風號的實際時刻表與劃位[cite: 5]。</li>
-                    <li>Whale Express 是否需提前預約及 11:50 班次狀況[cite: 5]。</li>
-                    <li>珈琲屋 Lamp、熟成麵 宴的最新營業時間[cite: 5]。</li>
-                    <li>松山城冬季天守與纜車最後入場時間[cite: 5]。</li>
-                    <li>使用之周遊券/套票是否包含 Shiokaze 特急（影響 D3 買票）[cite: 5]。</li>
-                    <li>虎航岡山機場報到櫃檯截止時間[cite: 5]。</li>
+                    <li>Haruka、のぞみ、南風的實際時刻與劃位。</li>
+                    <li>Whale Express 是否需預約，以及 11:50 班次狀況。</li>
+                    <li>Lamp、熟成麵宴的營業時間。</li>
+                    <li>松山城冬季天守與纜車最後入場時間。</li>
+                    <li>D3 備案：丸龜 12:03 班次、岡山機場巴士班次與虎航報到截止時間。</li>
+                    <li>周遊券與 ICOCA 的使用範圍。</li>
                 </ul>
             </div>
         </div>
@@ -840,22 +857,26 @@
 </div>
 
 <script>
-    function switchTab(btnElement, tabId) {
+    function switchTab(event, tabId) {
         // 隱藏所有頁籤內容
-        var contents = document.querySelectorAll('.tab-content');
+        var contents = document.getElementsByClassName('tab-content');
         for (var i = 0; i < contents.length; i++) {
             contents[i].classList.remove('active');
         }
 
-        // 取消所有按鈕高亮
-        var buttons = document.querySelectorAll('.tab-btn');
-        for (var j = 0; j < buttons.length; j++) {
-            buttons[j].classList.remove('active');
+        // 移除所有按鈕的 active 樣式
+        var buttons = document.getElementsByClassName('tab-btn');
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].classList.remove('active');
         }
 
-        // 顯示點選的內容與高亮對應按鈕
+        // 顯示點擊的頁籤內容並加上 active 樣式
         document.getElementById(tabId).classList.add('active');
-        btnElement.classList.add('active');
+        
+        // 確保點擊的按鈕被高亮
+        if (event && event.currentTarget) {
+            event.currentTarget.classList.add('active');
+        }
     }
 </script>
 
