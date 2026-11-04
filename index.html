@@ -765,4 +765,95 @@
             <div class="timeline-item">
                 <div class="time-badge">13:30 – 15:25</div>
                 <div class="timeline-content">
-                    抵達岡山機場，辦理虎航報到與登機手續，搭乘 <strong>15:25</strong> 航班順利返台 ✈️
+                    抵達岡山機場，辦理虎航報到與登機手續，搭乘 <strong>15:25</strong> 航班順利返台 ✈️[cite: 4]。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 頁籤內容：實用日文與確認清單 -->
+    <div id="jp-tools" class="tab-content">
+        <div class="card">
+            <h2 class="card-title">🗣️ 旅途實用日文對話與出發前清單</h2>
+            
+            <table class="jp-table">
+                <thead>
+                    <tr>
+                        <th>情境與中文意思</th>
+                        <th>日語發音與對照</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>請問這班車到○○嗎？</td>
+                        <td>この電車は○○に行きますか？[cite: 5]</td>
+                    </tr>
+                    <tr>
+                        <td>請問○○站在哪裡？</td>
+                        <td>○○駅はどこですか？[cite: 5]</td>
+                    </tr>
+                    <tr>
+                        <td>我要買一張到○○的票</td>
+                        <td>○○までの切符を一枚ください[cite: 5]</td>
+                    </tr>
+                    <tr>
+                        <td>請問可以寄放行李嗎？</td>
+                        <td>荷物を預かってもらえますか？[cite: 5]</td>
+                    </tr>
+                    <tr>
+                        <td>我有訂位，名字是○○</td>
+                        <td>○○で予約しています[cite: 5]</td>
+                    </tr>
+                    <tr>
+                        <td>請給我菜單 / 我要這個</td>
+                        <td>メニューをお願いします / これをください[cite: 5]</td>
+                    </tr>
+                    <tr>
+                        <td>請幫我結帳 / 可以刷卡嗎？</td>
+                        <td>お会計をお願いします / カードは使えますか？[cite: 5]</td>
+                    </tr>
+                    <tr>
+                        <td>我想辦理入住</td>
+                        <td>チェックインをお願いします[cite: 5]</td>
+                    </tr>
+                    <tr>
+                        <td>我迷路了，可以幫我嗎？</td>
+                        <td>道に迷いました。助けてください[cite: 5]</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="alert-box" style="margin-top: 20px;">
+                <h4>✅ 出發前關鍵確認清單 (Checklist)</h4>
+                <ul>
+                    <li>Haruka、Nozomi、南風號的實際時刻表與劃位[cite: 5]。</li>
+                    <li>Whale Express 是否需提前預約及 11:50 班次狀況[cite: 5]。</li>
+                    <li>珈琲屋 Lamp、熟成麵 宴的最新營業時間[cite: 5]。</li>
+                    <li>松山城冬季天守與纜車最後入場時間[cite: 5]。</li>
+                    <li>使用之周遊券/套票是否包含 Shiokaze 特急（影響 D3 買票）[cite: 5]。</li>
+                    <li>虎航岡山機場報到櫃檯截止時間[cite: 5]。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function switchTab(tabId) {
+        // 隱藏所有頁籤內容
+        const contents = document.querySelectorAll('.tab-content');
+        contents.forEach(content => content.classList.remove('active'));
+
+        // 取消所有按鈕高亮
+        const buttons = document.querySelectorAll('.tab-btn');
+        buttons.forEach(button => button.classList.remove('active'));
+
+        // 顯示點選的內容與高亮按鈕
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
+</script>
+
+</body>
+</html>
