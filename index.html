@@ -316,13 +316,13 @@
 
     <!-- 行程天數頁籤選單 -->
     <div class="tab-nav">
-        <button class="tab-btn active" onclick="switchTab('overview')">📌 總覽與注意事項</button>
-        <button class="tab-btn" onclick="switchTab('day1')">Day 1 正案（丸龜・高知）</button>
-        <button class="tab-btn" onclick="switchTab('day1-backup')">Day 1 備案（晚到高知）</button>
-        <button class="tab-btn" onclick="switchTab('day2')">Day 2（高知・松山・道後）</button>
-        <button class="tab-btn" onclick="switchTab('day3')">Day 3（松山・岡山城）</button>
-        <button class="tab-btn" onclick="switchTab('day3-backup')">Day 3 備案（丸龜城快閃）</button>
-        <button class="tab-btn" onclick="switchTab('jp-tools')">🗣️ 實用日文與清單</button>
+        <button class="tab-btn active" onclick="switchTab(this, 'overview')">📌 總覽與注意事項</button>
+        <button class="tab-btn" onclick="switchTab(this, 'day1')">Day 1 正案（丸龜・高知）</button>
+        <button class="tab-btn" onclick="switchTab(this, 'day1-backup')">Day 1 備案（晚到高知）</button>
+        <button class="tab-btn" onclick="switchTab(this, 'day2')">Day 2（高知・松山・道後）</button>
+        <button class="tab-btn" onclick="switchTab(this, 'day3')">Day 3（松山・岡山城）</button>
+        <button class="tab-btn" onclick="switchTab(this, 'day3-backup')">Day 3 備案（丸龜城快閃）</button>
+        <button class="tab-btn" onclick="switchTab(this, 'jp-tools')">🗣️ 實用日文與清單</button>
     </div>
 
     <!-- 頁籤內容：總覽與注意事項 -->
@@ -840,18 +840,22 @@
 </div>
 
 <script>
-    function switchTab(tabId) {
+    function switchTab(btnElement, tabId) {
         // 隱藏所有頁籤內容
-        const contents = document.querySelectorAll('.tab-content');
-        contents.forEach(content => content.classList.remove('active'));
+        var contents = document.querySelectorAll('.tab-content');
+        for (var i = 0; i < contents.length; i++) {
+            contents[i].classList.remove('active');
+        }
 
         // 取消所有按鈕高亮
-        const buttons = document.querySelectorAll('.tab-btn');
-        buttons.forEach(button => button.classList.remove('active'));
+        var buttons = document.querySelectorAll('.tab-btn');
+        for (var j = 0; j < buttons.length; j++) {
+            buttons[j].classList.remove('active');
+        }
 
-        // 顯示點選的內容與高亮按鈕
+        // 顯示點選的內容與高亮對應按鈕
         document.getElementById(tabId).classList.add('active');
-        event.currentTarget.classList.add('active');
+        btnElement.classList.add('active');
     }
 </script>
 
