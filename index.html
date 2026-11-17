@@ -42,48 +42,48 @@
             text-align: center;
             padding: 2.2rem 1rem 1.5rem;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        header h1 {
-            font-size: 1.8rem;
-            letter-spacing: 2px;
-            margin-bottom: 0.5rem;
-        }
-
-        header p {
-            font-size: 0.95rem;
-            color: var(--accent-soft);
-        }
-
-        .container {
-            max-width: 950px;
-            margin: 0 auto;
-            padding: 0 16px;
-        }
-
-        /* 頁籤選單 (Tab Navigation) */
+        /* 頁籤選單 (Tab Navigation) - 單行橫向滑動設計，避免多行換行遮擋螢幕 */
         .tab-nav {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             gap: 8px;
-            margin-top: 20px;
-            flex-wrap: wrap;
+            margin-top: 12px;
+            padding: 10px 4px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
             position: sticky;
-            top: 10px;
+            top: 0;
             z-index: 100;
+            background: rgba(249, 246, 240, 0.95);
+            backdrop-filter: blur(6px);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .tab-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        @media (min-width: 860px) {
+            .tab-nav {
+                justify-content: center;
+            }
         }
 
         .tab-btn {
             background-color: #e2d9cc;
             color: var(--primary-dark);
             border: 1px solid var(--border-light);
-            padding: 10px 18px;
+            padding: 8px 15px;
             border-radius: 20px;
             font-weight: bold;
-            font-size: 0.92rem;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            flex-shrink: 0;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.06);
         }
 
         .tab-btn:hover {
@@ -325,10 +325,10 @@
 
 <header>
     <h1>四國三日行程表（2026/12/10 - 12/12）</h1>
-    <p>關西機場進 ➔ 丸龜・高知 ➔ 松山道後 ➔ 岡山離境</p>
+    <p>關西機場進 ➔ 丸龜・高知 ➔ 松山道後・日出 ➔ 岡山離境</p>
 </header>
 
-<div class="container">
+<div class="container" id="main-container">
 
     <!-- 行程天數頁籤選單 -->
     <div class="tab-nav">
@@ -336,7 +336,7 @@
         <button class="tab-btn" onclick="switchTab(event, 'day1')">Day 1 正案（丸龜・高知）</button>
         <button class="tab-btn" onclick="switchTab(event, 'day1-backup')">Day 1 備案（晚到高知）</button>
         <button class="tab-btn" onclick="switchTab(event, 'day2')">Day 2（高知・松山・道後）</button>
-        <button class="tab-btn" onclick="switchTab(event, 'day3')">Day 3（松山・岡山城）</button>
+        <button class="tab-btn" onclick="switchTab(event, 'day3')">Day 3（松山道後日出）</button>
         <button class="tab-btn" onclick="switchTab(event, 'day3-backup')">Day 3 備案（丸龜城快閃）</button>
         <button class="tab-btn" onclick="switchTab(event, 'jp-tools')">🗣️ 實用日文與清單</button>
     </div>
@@ -417,7 +417,7 @@
                 <div class="time-badge">10:25 – 11:00</div>
                 <div class="timeline-content">
                     <div class="highlight-important">
-                        <strong>⚠️ 補票提醒：</strong>至岡山站 2F 綠色售票機補買「岡山 ➔ 兒島」特急券（¥1,270），並採買車上點心。<strong>（今天第一天不去岡山城，第三天再去！）</strong>
+                        <strong>⚠️ 補票提醒：</strong>至岡山站 2F 綠色售票機補買「岡山 ➔ 兒島」特急券（¥1,270），並採買車上點心。
                     </div>
                 </div>
             </div>
@@ -977,9 +977,16 @@
         // 顯示點擊的頁籤內容並加上 active 樣式
         document.getElementById(tabId).classList.add('active');
         
-        // 確保點擊的按鈕被高亮
+        // 確保點擊的按鈕被高亮，並自動水平置中顯示該頁籤按鈕
         if (event && event.currentTarget) {
             event.currentTarget.classList.add('active');
+            event.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
+
+        // 切換頁籤時自動捲動至內容區頂部，避免停留在前一頁的底部位置
+        var container = document.getElementById('main-container');
+        if (container && window.scrollY > container.offsetTop) {
+            window.scrollTo({ top: container.offsetTop, behavior: 'smooth' });
         }
     }
 </script>
